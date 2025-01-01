@@ -9,6 +9,7 @@ class ArticleList(ListView):
         return Article.objects.filter(status=True)
     template_name = "blog/article_list.html"
     
+    
 class ArticleDetail(DetailView):
     def get_object(self):
         return get_object_or_404(
