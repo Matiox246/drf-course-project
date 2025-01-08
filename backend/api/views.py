@@ -1,6 +1,7 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, RetrieveAPIView,UpdateAPIView, DestroyAPIView
-from rest_framework.permissions import IsAdminUser
-from rest_framework.authentication import SessionAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 from django.shortcuts import render
 from django.contrib.auth.models import User
@@ -34,3 +35,11 @@ class UserDetail(RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = (IsSuperUserOrStaffReadOnly,)
+
+
+# class RevokeToken(APIView):
+#     permission_classes = (IsAuthenticated, )
+
+#     def delete(self, request):
+#         request.auth.delete()
+#         return Response(status=204)
